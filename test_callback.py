@@ -22,6 +22,4 @@ def main():
     t.register(f)
     t.do()
 
-if __name__ == "__main__":
-    main()
-
+main()

@@ -33,6 +33,16 @@ def ip_to_int_2(ip_str: str) -> int:
     return socket.ntohl(struct.unpack("I", socket.inet_aton(ip_str))[0])
 
 
+def ip_to_int_3(ip_str: str) -> int:
+    """
+    方法三：通过移位的方式
+    :param ip_str:
+    :return:
+    """
+    parts = [int(x) for x in ip_str.split(".")]
+    return sum(parts[i] << [24, 16, 8, 0][i] for i in range(4))
+
+
 def int_to_ip(ip_int: int) -> str:
     """
     将int类型的ip数，转为32位的二进制数，然后按照8位进行分割，每8位标识一个IP的一部分即可
@@ -66,6 +76,7 @@ if __name__ == "__main__":
     str_ip = "127.0.0.1"
     print("ip_to_int: ", ip_to_int(str_ip))
     print("ip_to_int_2: ", ip_to_int_2(str_ip))
+    print("ip_to_int_3: ", ip_to_int_3(str_ip))
 
     int_ip = 2130706433
     print("int_to_ip: ", int_to_ip(int_ip))

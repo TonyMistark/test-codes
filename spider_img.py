@@ -22,9 +22,13 @@ def spid_img(path):
             file_path = os.path.join(path, file_name)
             print(file_path, count)
             count += 1
-            with open(file_path, 'wb') as f:
-                img = requests.get(image).content
-                f.write(img)
+            try:
+                with open(file_path, 'wb') as f:
+                    img = requests.get(image).content
+                    f.write(img)
+            except Exception as e:
+                print("img: ", img)
+                print(e)
 
 if __name__ == "__main__":
     print(sys.argv)
